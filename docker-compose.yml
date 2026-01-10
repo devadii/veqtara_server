@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    # Instead of just using an image name, we tell Compose where to build it
+    build: . 
+    container_name: packpals-container
+    
+    # Map port 5000 (your PC) to 8000 (Gunicorn inside Docker)
+    ports:
+      - "5000:5000"
+    
+    # Load your .env file automatically
+    env_file:
+      - .env
+    
+    # --- THE MAGIC PART (VOLUMES) ---
+    # This syncs your current folder (.) to the container folder (/app)
+    volumes:
+      - .:/app
+    
+    # We add '--reload' so Gunicorn restarts whenever it detects code changes
+    command: python run.py

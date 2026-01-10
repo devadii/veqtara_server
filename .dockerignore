@@ -1,0 +1,7 @@
+__pycache__
+venv/
+.git/
+.env
+# IMPORTANT: Ignore the credentials file so it's not baked into the image
+firebase-credentials.json
+*.pyc
